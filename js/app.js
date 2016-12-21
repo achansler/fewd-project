@@ -48,168 +48,78 @@ $('.center').slick({
   ]
 });
 
-//Ingredients
-
-var ingredients = [
-{
-  photo: "img/sandwich ingredients-01.png"
-},
-{
-  photo: "img/sandwich ingredients-02.png"
-},
-{
-  photo: "img/sandwich ingredients-04.png"
-},
-{
-  photo: "img/sandwich ingredients-05.png"
-},
-{
-  photo: "img/sandwich ingredients-06.png"
-},
-{
-  photo: "img/sandwich ingredients-03.png"
-},
-{
-  photo: "img/sandwich ingredients-07.png"
-},
-{
-  photo: "img/sandwich ingredients-08.png"
-},
-{
-  photo: "img/sandwich ingredients-09.png"
-},
-{
-  photo: "img/sandwich ingredients-10.png"
-},
-{
-  photo: "img/sandwich ingredients-11.png"
-},
-{
-  photo: "img/sandwich ingredients-12.png"
-},
-{
-  photo: "img/sandwich ingredients-13.png"
-},
-{
-  photo: "img/sandwich ingredients-14.png"
-},
-{
-  photo: "img/sandwich ingredients-15.png"
-},
-{
-  photo: "img/sandwich ingredients-16.png"
-},
-{
-  photo: "img/sandwich ingredients-17.png"
-},
-{
-  photo: "img/sandwich ingredients-18.png"
-},
-{
-  photo: "img/sandwich ingredients-19.png"
-},
-{
-  photo: "img/sandwich ingredients-20.png"
-},
-{
-  photo: "img/sandwich ingredients-21.png"
-},
-{
-  photo: "img/sandwich ingredients-22.png"
-},
-];
-
-var changeImage = function(image) {
-  $("img#big").attr("src", ingredients[image]["photo"]);
+var changeImage = function(id, type) {
+  // console.log(id, type)
+  $("img#big").attr("src", "img/sandwich ingredients-"+id+".png");
   $("button#next").removeClass("hide");
   $("h2#empty").addClass("hide");
+
+  var params = new URLSearchParams(window.location.search);
+
+  if (type === 'toppings') {
+    params.append('toppings', id);
+  } else {
+    params.set(type, id);
+  }
+
+  // window.location.search = params;
+    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + params.toString();
+    window.history.pushState({path:newurl},'',newurl);
 }
 
-$("img#one").on("click", function() {
-  changeImage(0);
+var idMap = {
+  one: "01", 
+  two: "02",
+  three: "03",
+  four: "04",
+  five: "05",
+  six: "06",
+  seven: "07",
+  eight: "08",
+  nine: "09",
+  ten: "10",
+  eleven: "11",
+  tweleve: "12",
+  thirteen: "13",
+  fourteen: "14",
+  fifteen: "15",
+  sixteen: "16",
+  seventeen: "17",
+  eighteen: "18",
+  nineteen: "19",
+  twenty: "20",
+  twentyOne: "21",
+  twentyTwo: "22"
+};
+
+$("img").on("click", function() {
+  changeImage(idMap[this.id], this.classList[0]);
 });
 
-$("img#two").on("click", function() {
-  changeImage(1);
-});
+var sandwichDiv = $("#fullSandy");
+if (sandwichDiv.length) {
+  var params = new URLSearchParams(window.location.search);
+  var fullSandy = {};
 
-$("img#three").on("click", function() {
-  changeImage(2);
-});
+  fullSandy.bread = params.getAll('bread');
+  fullSandy.toppings = params.getAll('toppings');
 
-$("img#four").on("click", function() {
-  changeImage(3);
-});
+  // first place the bread
+  for (i = 0; i < fullSandy.bread.length; i++) {
+    var bread = "img/sandwich ingredients-" + fullSandy.bread[i] + ".png";
 
-$("img#five").on("click", function() {
-  changeImage(4);
-});
+    var img = $('<img class="bread">');
+    img.attr('src', bread);
+    img.appendTo(sandwichDiv);
+  }
 
-$("img#six").on("click", function() {
-  changeImage(5);
-});
+  // then put dem toppins
+  for (i = 0; i < fullSandy.toppings.length; i++) {
+    var topping = "img/sandwich ingredients-" + fullSandy.toppings[i] + ".png";
 
-$("img#seven").on("click", function() {
-  changeImage(6)
-});
-
-$("img#eight").on("click", function() {
-  changeImage(7)
-});
-
-$("img#nine").on("click", function() {
-  changeImage(8)
-});
-
-$("img#ten").on("click", function() {
-  changeImage(9)
-});
-
-$("img#eleven").on("click", function() {
-  changeImage(10)
-});
-
-$("img#tweleve").on("click", function() {
-  changeImage(11)
-});
-
-$("img#thirteen").on("click", function() {
-  changeImage(12)
-});
-
-$("img#fourteen").on("click", function() {
-  changeImage(13)
-});
-
-$("img#fifteen").on("click", function() {
-  changeImage(14)
-});
-
-$("img#sixteen").on("click", function() {
-  changeImage(15)
-});
-
-$("img#seventeen").on("click", function() {
-  changeImage(16)
-});
-
-$("img#eighteen").on("click", function() {
-  changeImage(17)
-});
-
-$("img#nineteen").on("click", function() {
-  changeImage(18)
-});
-
-$("img#twenty").on("click", function() {
-  changeImage(19)
-});
-
-$("img#twenty-one").on("click", function() {
-  changeImage(20)
-});
-
-$("img#twenty-two").on("click", function() {
-  changeImage(21)
-});
+    var img = $('<img>');
+    img.attr('src', topping);
+    img.appendTo(sandwichDiv);
+  }
+}
 
