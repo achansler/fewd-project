@@ -49,7 +49,6 @@ $('.center').slick({
 });
 
 var changeImage = function(id, type) {
-  // console.log(id, type)
   $("img#big").attr("src", "img/sandwich ingredients-"+id+".png");
   $("button#next").removeClass("hide");
   $("h2#empty").addClass("hide");
@@ -62,9 +61,11 @@ var changeImage = function(id, type) {
     params.set(type, id);
   }
 
-  // window.location.search = params;
-    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + params.toString();
-    window.history.pushState({path:newurl},'',newurl);
+  var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + params.toString();
+  window.history.pushState({path:newurl},'',newurl);
+
+  var baseUrl = $('#nextLink')[0].href.split('?')[0];
+  $('#nextLink')[0].href = baseUrl + '?' + params.toString();
 }
 
 var idMap = {
@@ -103,6 +104,8 @@ if (sandwichDiv.length) {
 
   fullSandy.bread = params.getAll('bread');
   fullSandy.toppings = params.getAll('toppings');
+  fullSandy.meat = params.getAll('meat');
+  fullSandy.cheese = params.getAll('cheese');
 
   // first place the bread
   for (i = 0; i < fullSandy.bread.length; i++) {
@@ -110,6 +113,22 @@ if (sandwichDiv.length) {
 
     var img = $('<img class="bread">');
     img.attr('src', bread);
+    img.appendTo(sandwichDiv);
+  }
+
+  for (i = 0; i < fullSandy.meat.length; i++) {
+    var meat = "img/sandwich ingredients-" + fullSandy.meat[i] + ".png";
+
+    var img = $('<img class="meat">');
+    img.attr('src', meat);
+    img.appendTo(sandwichDiv);
+  }
+
+  for (i = 0; i < fullSandy.cheese.length; i++) {
+    var cheese = "img/sandwich ingredients-" + fullSandy.cheese[i] + ".png";
+
+    var img = $('<img class="cheese">');
+    img.attr('src', cheese);
     img.appendTo(sandwichDiv);
   }
 
