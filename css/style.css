@@ -119,11 +119,11 @@ button.hide {
 }
 
 #yes {
-    cursor: url("/Users/abigailchansler/desktop/ga-fewd/final project/img/happy.png"), auto;
+  cursor: url("../img/happy.png"), pointer; 
 }
 
 #no {
-	cursor: url("/Users/abigailchansler/desktop/ga-fewd/final project/img/sad.png"), auto;
+	cursor: url("../img/sad.png"), pointer;
 }
 
 img {
