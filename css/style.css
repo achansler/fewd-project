@@ -158,3 +158,14 @@ color: #B1DBD2;
   position: relative;
 }
 
+.bread,
+.cheese,
+.meat,
+.toppings {
+  position: absolute;
+}
+
+.static {
+  position: static;
+}
+

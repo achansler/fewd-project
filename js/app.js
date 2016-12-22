@@ -114,6 +114,7 @@ if (sandwichDiv.length) {
     var img = $('<img class="bread">');
     img.attr('src', bread);
     img.appendTo(sandwichDiv);
+    img.removeClass("static");
   }
 
   for (i = 0; i < fullSandy.meat.length; i++) {
@@ -122,6 +123,7 @@ if (sandwichDiv.length) {
     var img = $('<img class="meat">');
     img.attr('src', meat);
     img.appendTo(sandwichDiv);
+    img.removeClass("static");
   }
 
   for (i = 0; i < fullSandy.cheese.length; i++) {
@@ -130,6 +132,7 @@ if (sandwichDiv.length) {
     var img = $('<img class="cheese">');
     img.attr('src', cheese);
     img.appendTo(sandwichDiv);
+    img.removeClass("static");
   }
 
   // then put dem toppins
@@ -139,6 +142,8 @@ if (sandwichDiv.length) {
     var img = $('<img>');
     img.attr('src', topping);
     img.appendTo(sandwichDiv);
+    img.addClass("toppings")
+    img.removeClass("static");
   }
 }
 
