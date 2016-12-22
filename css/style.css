@@ -144,10 +144,17 @@ small {
 color: #B1DBD2; 
 }
 
-.toppings {
+.col-4 {
   padding: 0px 0px 25px 0px;
   border-radius: 5px;
 }
-.toppings:hover {
+.col-4:hover {
   box-shadow: -1px 3px 31px 12px rgba(0,0,0,0.05);
 }
+
+#fullSandy {
+  margin: auto;
+  width: 600px;
+  position: relative;
+}
+
